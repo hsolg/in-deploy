@@ -1,0 +1,19 @@
+{
+  "name": "@hsolg/in-deploy",
+  "version": "0.0.1",
+  "description": "Simple deployment utility.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsolg/in-deploy.git"
+  },
+  "author": "Henrik Solgaard <h@solg.no>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hsolg/in-deploy/issues"
+  },
+  "homepage": "https://github.com/hsolg/in-deploy#readme"
+}
