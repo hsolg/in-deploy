@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/hsolg/in-deploy/issues"
   },
-  "homepage": "https://github.com/hsolg/in-deploy#readme"
+  "homepage": "https://github.com/hsolg/in-deploy#readme",
+  "dependencies": {
+    "aws-sdk": "^2.368.0",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.1"
+  }
 }
