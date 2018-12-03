@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const program = require('commander')
 const inquirer = require('inquirer')
 const resolve = require('path').resolve
