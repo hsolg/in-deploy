@@ -12,32 +12,32 @@ in-deploy is an interactive utility with a number of commands.
 ## AWS setup
 
 ### Create IAM user
-Go to IAM -> Users.
-Press "Add user".
-Enter user name.
-Enable "Programmatic access".
-Press "Next" a few times and then "Create user".
+1. Go to IAM -> Users.
+2. Press "Add user".
+3. Enter user name.
+4. Enable "Programmatic access".
+5. Press "Next" a few times and then "Create user".
 
 ### Create access key
-Select the new user in the user overview and select the "Security credentials" tab.
-Press "Create access key".
-Click on "Show" and save the Access key ID and Secret access key in a safe place.
+1. Select the new user in the user overview and select the "Security credentials" tab.
+2. Press "Create access key".
+3. Click on "Show" and save the Access key ID and Secret access key in a safe place.
 
 ### Create bucket
-Go to S3.
-Press "Create bucket".
-Enter bucket name.
-Select a region. Find the corresponding region id here (e.g. eu-west-1) and write it down:
-https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
-Press "Next" a few times and then "Create bucket".
+1. Go to S3.
+2. Press "Create bucket".
+3. Enter bucket name.
+4. Select a region. Find the corresponding region id here (e.g. eu-west-1) and write it down:
+5. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+6. Press "Next" a few times and then "Create bucket".
 
 ### Configure bucket access
-Select the bucket in the bucket overview.
-Select the "Permissions" tab.
-Press "Bucket policy".
-Enter the policy below.
-Replace IAM_USER_NAME with the username of the user create above.
-Replace BUCKET_NAME with the name of the bucket.
+1. Select the bucket in the bucket overview.
+2. Select the "Permissions" tab.
+3. Press "Bucket policy".
+4. Enter the policy below.
+  * Replace IAM_USER_NAME with the username of the user create above.
+  * Replace BUCKET_NAME with the name of the bucket.
 
 ```
 {
