@@ -11,9 +11,33 @@ in-deploy is an interactive utility with a number of commands.
 
 ## AWS setup
 
-Create an IAM user. Save the access key id and the secret access key.
+### Create IAM user
+Go to IAM -> Users.
+Press "Add user".
+Enter user name.
+Enable "Programmatic access".
+Press "Next" a few times and then "Create user".
 
-Create an S3 bucket. Add the following profile:
+### Create access key
+Select the new user in the user overview and select the "Security credentials" tab.
+Press "Create access key".
+Click on "Show" and save the Access key ID and Secret access key in a safe place.
+
+### Create bucket
+Go to S3.
+Press "Create bucket".
+Enter bucket name.
+Select a region. Find the corresponding region id here (e.g. eu-west-1) and write it down:
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+Press "Next" a few times and then "Create bucket".
+
+### Configure bucket access
+Select the bucket in the bucket overview.
+Select the "Permissions" tab.
+Press "Bucket policy".
+Enter the policy below.
+Replace IAM_USER_NAME with the username of the user create above.
+Replace BUCKET_NAME with the name of the bucket.
 
 ```
 {
