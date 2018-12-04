@@ -135,7 +135,7 @@ function handlePush() {
                     const fileContents = fs.readFileSync(localPath)
                     const bucketParams = {
                         Bucket: config[answers.name].bucket,
-                        Key: "MyKey",
+                        Key: answers2.file,
                         Body: fileContents
                     }
                     const promise = new aws.S3(s3Params).putObject(bucketParams).promise()
