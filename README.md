@@ -1,7 +1,7 @@
 # in-deploy
 Simple deployment utility.
 
-Deploy any type of software archive via Amazon S3. Convenient if the build machine and the deployment target can communicate directly because of NAT etc.
+Deploy any type of software archive via Amazon S3. Convenient if the build machine and the deployment target cannot communicate directly because of NAT etc.
 
 in-deploy is an interactive utility with a number of commands.
 * login
@@ -27,8 +27,7 @@ in-deploy is an interactive utility with a number of commands.
 1. Go to S3.
 2. Press "Create bucket".
 3. Enter bucket name.
-4. Select a region. Find the corresponding region id here (e.g. eu-west-1) and write it down:
-5. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+4. Select a region. Find the corresponding region id here (e.g. eu-west-1) and write it down: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
 6. Press "Next" a few times and then "Create bucket".
 
 ### Configure bucket access
@@ -36,8 +35,8 @@ in-deploy is an interactive utility with a number of commands.
 2. Select the "Permissions" tab.
 3. Press "Bucket policy".
 4. Enter the policy below.
-  * Replace IAM_USER_NAME with the username of the user create above.
-  * Replace BUCKET_NAME with the name of the bucket.
+   * Replace IAM_USER_NAME with the username of the user created above.
+   * Replace BUCKET_NAME with the name of the bucket.
 
 ```
 {
