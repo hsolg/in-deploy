@@ -56,3 +56,69 @@ in-deploy is an interactive utility with a number of commands.
     ]
 }
 ```
+
+## Usage
+
+### login
+
+Enter and store Amazon AWS credentials. The credentials will be stored in a file called .in-deploy-user in the directory where you run the in-deploy executable. You have to run the executable from the same directory if you want to use the credentials later. Make sure you don't commit the credentials file to a public source code repository.
+
+```
+$ in-deploy 
+Commands: login | add | push | pull | quit
+? Command: login
+? Region: <the region where your bucket was created>
+? Access key ID: ********************
+? Secret access key: ****************************************
+```
+
+### add
+
+If you are on a build machine, use this command to register a directory with builds. If you are on a deployment machine, use this command to register a directory where you will store application archives for deployment. The mappings from application names to directories and buckets will be stored in a file called .in-deploy-app in the directory where you run the in-deploy executable. You have to run the executable from the same directory if you want to use the mappings later.
+
+```
+$ in-deploy 
+Commands: login | add | push | pull | quit
+? Command: add
+? Name: <typically an application name>
+? Directory: <directory with application archives (relative to current directory)>
+? Bucket name: <name of the S3 bucket>
+```
+
+### push
+
+Use this command to push an application archive from a build machine to an S3 bucket.
+
+```
+$ in-deploy 
+Commands: login | add | push | pull | quit
+? Command: push
+? Name: <typically an application name>
+? File: SomeApplication-x.y.z.zip
+Upload <full path>/SomeApplication-x.y.z.zip to <bucket name>
+ETag: "********************************"
+```
+
+### pull
+
+Use this command to pull an application archive from an S3 bucket to a deployment machine.
+
+```
+$ in-deploy 
+Commands: login | add | push | pull | quit
+? Command: pull
+? Name: <typically an application name>
+? File: 
+❯ SomeApplication-x.y.z.zip 
+```
+
+### quit
+
+Quit in-deploy and return to the shell.
+
+```
+$ in-deploy 
+Commands: login | add | push | pull | quit
+? Command: quit
+$
+```
