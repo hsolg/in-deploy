@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander')
 const inquirer = require('inquirer')
-const resolve = require('path').resolve
 const path = require('path')
 const fs = require('fs')
 const homedir = require('os').homedir()
@@ -90,7 +89,7 @@ function handleAdd() {
             }
         ])
         .then(answers => {
-            const fullPath = resolve(answers.directory)
+            const fullPath = path.resolve(answers.directory)
             const config = readAppConfig()
             config[answers.name] = {
                 directory: fullPath,
