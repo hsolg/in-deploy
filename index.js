@@ -219,7 +219,7 @@ function prompt() {
             } else if (answers.command == "pull") {
                 handlePull()
             } else if (answers.command == "quit") {
-                // Do noting.
+                // Do nothing.
             } else {
                 console.log("Unknown command!")
                 printUsage()
