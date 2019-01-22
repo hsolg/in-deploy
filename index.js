@@ -187,7 +187,11 @@ function handlePull() {
                         }
                         const getPromise = s3.getObject(getParams).promise()
                         getPromise.then((res, err) => {
-                            const outputPath = path.join(config[answers.name].directory, answers2.file)
+                            const outputDir = config[answers.name].directory
+                            if (! fs.existsSync(outputDir)) {
+                                fs.mkdirSync(outputDir)
+                            }
+                            const outputPath = path.join(outputDir, answers2.file)
                             console.log(`Save ${outputPath}`)
                             fs.writeFileSync(outputPath, res.Body)
                             prompt()
