@@ -35,7 +35,7 @@ in-deploy is an interactive utility with a number of commands.
 2. Select the "Permissions" tab.
 3. Press "Bucket policy".
 4. Enter the policy below.
-   * Replace IAM_USER_NAME with the username of the user created above.
+   * Replace IAM_USER_ID and IAM_USER_NAME with the id and username of the user created above.
    * Replace BUCKET_NAME with the name of the bucket.
 
 ```
@@ -45,7 +45,7 @@ in-deploy is an interactive utility with a number of commands.
         {
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::328748916495:user/IAM_USER_NAME"
+                "AWS": "arn:aws:iam::IAM_USER_ID:user/IAM_USER_NAME"
             },
             "Action": "s3:*",
             "Resource": [
