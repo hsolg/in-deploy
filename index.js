@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander')
 const inquirer = require('inquirer')
-const resolve = require('path').resolve
 const path = require('path')
 const fs = require('fs')
 const homedir = require('os').homedir()
@@ -90,7 +89,7 @@ function handleAdd() {
             }
         ])
         .then(answers => {
-            const fullPath = resolve(answers.directory)
+            const fullPath = path.resolve(answers.directory)
             const config = readAppConfig()
             config[answers.name] = {
                 directory: fullPath,
@@ -188,7 +187,11 @@ function handlePull() {
                         }
                         const getPromise = s3.getObject(getParams).promise()
                         getPromise.then((res, err) => {
-                            const outputPath = path.join(config[answers.name].directory, answers2.file)
+                            const outputDir = config[answers.name].directory
+                            if (! fs.existsSync(outputDir)) {
+                                fs.mkdirSync(outputDir)
+                            }
+                            const outputPath = path.join(outputDir, answers2.file)
                             console.log(`Save ${outputPath}`)
                             fs.writeFileSync(outputPath, res.Body)
                             prompt()
@@ -220,7 +223,7 @@ function prompt() {
             } else if (answers.command == "pull") {
                 handlePull()
             } else if (answers.command == "quit") {
-                // Do noting.
+                // Do nothing.
             } else {
                 console.log("Unknown command!")
                 printUsage()
