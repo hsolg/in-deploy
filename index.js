@@ -201,8 +201,63 @@ function handlePull() {
         })
 }
 
+function handlePresign() {
+    const config = readAppConfig()
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'name',
+                message: 'Name:',
+                choices: Object.keys(config)
+            }
+        ])
+        .then(answers => {
+            const userConfig = readUserConfig()
+            const s3Params = {
+                apiVersion: '2006-03-01',
+                region: userConfig.region,
+                accessKeyId: userConfig.accessKeyId,
+                secretAccessKey: userConfig.secretAccessKey,
+                Bucket: config[answers.name].bucket
+            }
+            const s3 = new aws.S3(s3Params)
+            const bucketParams = {
+                Bucket: config[answers.name].bucket,
+            }
+            const promise = s3.listObjects(bucketParams).promise()
+            promise.then((res, err) => {
+                filenames = res.Contents.map(c => c.Key)
+                inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            name: 'file',
+                            message: 'File:',
+                            choices: filenames
+                        },
+                        {
+                            type: 'number',
+                            name: 'expires',
+                            message: 'Expires (seconds):',
+                        }
+                    ])
+                    .then(answers2 => {
+                        const bucketParams = {
+                            Bucket: config[answers.name].bucket,
+                            Key: answers2.file,
+                            Expires: answers2.expires
+                        }
+                        const presignedUrl = s3.getSignedUrl('getObject', bucketParams)
+                        console.log(presignedUrl)
+                        prompt()
+                    })
+            })
+        })
+}
+
 function printUsage() {
-    console.log("Commands: login | add | push | pull | quit")
+    console.log("Commands: login | add | push | pull | presign | quit")
     prompt()
 }
 
@@ -222,6 +277,8 @@ function prompt() {
                 handlePush()
             } else if (answers.command == "pull") {
                 handlePull()
+            } else if (answers.command == "presign") {
+                handlePresign()
             } else if (answers.command == "quit") {
                 // Do nothing.
             } else {
